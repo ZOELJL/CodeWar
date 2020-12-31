@@ -1,5 +1,6 @@
 
 import math
+import datetime
 '''
 date: 2020-12-30
 level: 6 kyu
@@ -103,8 +104,42 @@ def expanded_form_perfect(num):
     nums = list(str(num))
     return ' + '.join(x + '0'*(len(nums)-y-1) for y,x in enumerate(nums) if x!= 0)
 
+'''
+date : 2020-12-31
+level: 5 kyu
+topic: Human Readable Time
+'''
+def make_readable(seconds):
+    if seconds < 10:
+        return '00:00:0{}'.format(seconds)
+    elif seconds < 60:
+        return '00:00:{}'.format(seconds)
+    elif seconds <3600 :
+        second =  seconds // 60
+        if second < 10:
+            second = '0'+str(second)
+        minute = seconds % 60
+        if minute < 10:
+            minute = '0'+str(minute)
+        return '00:{}:{}'.format(second,minute)
+    else:
+        hour = seconds // 3600
+        if hour < 10:
+            hour = '0'+str(hour)
+        second = (seconds - hour*3600)// 60
+        if second < 10:
+            second = '0'+str(second)
+        minute = (seconds - hour * 3600) % 60
+        if minute < 10:
+            minute = '0' + str(minute)
+        return '{}:{}:{}'.format(hour,second, minute)
+
+def make_readable_perfect(seconds):
+    return '{:02}:{:02}:{:02}'.format(int(seconds / 3600) ,int(seconds /60 % 60) ,int(seconds %60))
+
+
 if __name__ == '__main__':
     #print(spin_words('this is a test'))
     #print(spin_words_simple('this is another test'))
-    print(expanded_form_perfect(79966))
+    print(make_readable_perfect(359999))
 
