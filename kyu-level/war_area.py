@@ -138,8 +138,26 @@ def make_readable_perfect(seconds):
     return '{:02}:{:02}:{:02}'.format(int(seconds / 3600) ,int(seconds /60 % 60) ,int(seconds %60))
 
 
+'''
+date : 2021-01-11
+level: 6 kyu
+topic: Unique In Order
+'''
+
+def unique_in_order(iterable):
+    result = []
+    for i in range(len(iterable)):
+        if i == 0:
+            result.append(iterable[i])
+        elif iterable[i] != iterable[i-1]:
+            result.append(iterable[i])
+    return result
+
+
+
 if __name__ == '__main__':
     #print(spin_words('this is a test'))
     #print(spin_words_simple('this is another test'))
-    print(make_readable_perfect(359999))
+    #print(make_readable_perfect(359999))
+    print(unique_in_order([1,2,2,3,3]))
 
